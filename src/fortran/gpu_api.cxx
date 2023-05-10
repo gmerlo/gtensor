@@ -106,6 +106,12 @@ extern "C" int gpuStreamCreate(cudaStream_t* pStream)
   return static_cast<int>(cudaStreamCreate(pStream));
 }
 
+extern "C" int gpuStreamCreateAsynch(cudaStream_t* pStream)
+{
+  return static_cast<int>(cudaStreamCreateWithFlags(pStream, cudaStreamNonBlocking));
+}
+
+
 extern "C" int gpuStreamDestroy(cudaStream_t stream)
 {
   return static_cast<int>(cudaStreamDestroy(stream));
@@ -125,6 +131,11 @@ extern "C" int gpuMemcpyAsync(void* dst, const void* src, size_t bytes,
 extern "C" int gpuStreamCreate(hipStream_t* pStream)
 {
   return static_cast<int>(hipStreamCreate(pStream));
+}
+
+extern "C" int gpuStreamCreateAsynch(hipStream_t* pStream)
+{
+  return static_cast<int>(hipStreamCreateWithFlags(pStream, hipStreamNonBlocking));
 }
 
 extern "C" int gpuStreamDestroy(hipStream_t stream)

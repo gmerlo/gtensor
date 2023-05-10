@@ -113,6 +113,12 @@ module gpu_api_m
          integer(C_INT) :: gpuStreamCreate
       end function gpuStreamCreate
 
+      function gpuStreamCreateAsynch(streamId) bind(c,name="gpuStreamCreateAsynch")
+         import
+         type(C_PTR),intent(INOUT) :: streamId
+         integer(C_INT) :: gpuStreamCreateAsynch
+      end function gpuStreamCreateAsynch
+
       function gpuStreamDestroy(streamId) bind(c,name="gpuStreamDestroy")
          import
          type(C_PTR),value :: streamId
